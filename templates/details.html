@@ -1,28 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{user.first_name}}'s Details</title>
-</head>
+{% block title %}{{user.first_name}} {{user.last_name}}{% endblock %}}
 
-<body>
-    <div>
-        <img src="{{ user.image_url }}" alt="" width="100" height="100">
-    </div>
-    <div class="name">
-        {% if user.first_name %}
-        <h4>Name: {{user.first_name}} {{user.last_name}}</h4>
-        {% endif %}
-    </div>
-    <form action="/{{user_id}}/edit">
-        <button>Edit</button>
-    </form>
-    <form action="/{{user_id}}/delete" method="POST">
-        <button>Delete</button>
-    </form>
-</body>
+{% block content %}
 
-</html>
+
+<div>
+    <img src="{{ user.image_url }}" alt="" width="250" height="250">
+</div>
+<div class="name">
+    {% if user.first_name %}
+    <h2>Name: {{user.first_name}} {{user.last_name}}</h2>
+    {% endif %}
+</div>
+<form action="/{{user_id}}/edit">
+    <button>Edit</button>
+</form>
+<br>
+<form action="/{{user_id}}/delete" method="POST">
+    <button>Delete</button>
+</form>
+
+<h2>Posts</h2>
+
+<ul>
+    {% for post in user_posts %}
+    <li>
+        <a href="/{{user_id}}/posts/{{post.id}}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<br>
+<form action="/{{user_id}}/posts/new">
+    <button>Add Post</button>
+</form>
+<br>
+<a href="/">Go Back</a>
+
+
+{% endblock %}
