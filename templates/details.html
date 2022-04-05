@@ -4,15 +4,16 @@
 
 {% block content %}
 
+{% if user.image_url %}
+<div>
+    <img src="{{ user.image_url }}" alt="{{ user.first_name }}" width="250" height="250">
+</div>
+{% endif %}
 
 <div>
-    <img src="{{ user.image_url }}" alt="" width="250" height="250">
-</div>
-<div class="name">
-    {% if user.first_name %}
     <h2>Name: {{user.first_name}} {{user.last_name}}</h2>
-    {% endif %}
 </div>
+
 <form action="/{{user_id}}/edit">
     <button>Edit</button>
 </form>
@@ -24,11 +25,13 @@
 <h2>Posts</h2>
 
 <ul>
+    {% if user_posts %}
     {% for post in user_posts %}
     <li>
         <a href="/{{user_id}}/posts/{{post.id}}">{{ post.title }}</a>
     </li>
     {% endfor %}
+    {% endif %}
 </ul>
 <br>
 <form action="/{{user_id}}/posts/new">

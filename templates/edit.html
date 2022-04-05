@@ -6,12 +6,12 @@
 
 <h2>Edit {{user.first_name}}'s Details</h2>
 <form action="" method="POST">
-    <p>First Name: <input name="fname" placeholder="{{user.first_name}}"></p>
-    <p>Last Name: <input name="lname" placeholder="{{user.last_name}}"></p>
-    <p>Image: <input name="image" placeholder="{{user.image_url}}"></p>
+    <p>First Name: <input name="fname" placeholder="{{user.first_name}}" value="{{user.first_name}}"></p>
+    <p>Last Name: <input name="lname" placeholder="{{user.last_name}}" value="{{user.last_name}}"></p>
+    <p>Image: <input name="image" placeholder="{{user.image_url}}" value="{{user.image_url}}" size="50"></p>
     <button>Save</button>
 </form>
 <br>
-<a href="/{{user_id}}">Go Back</a>
+<a href="/{{user.id}}">Go Back</a>
 
 {% endblock %}

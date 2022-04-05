@@ -5,9 +5,22 @@
 {% block content %}
 <h2>Edit "{{post.title}}"</h2>
 <form action="/{{user_id}}/posts/{{post.id}}/edit" method="POST">
-    <p>Title: <input name="title"></p>
-    <p>Content: <input name="content" </p>
-        <button>Save</button>
+    <p>Title: <input name="title" value="{{post.title}}"></p>
+    <p>Content: <input name="content" value="{{post.content}}" size="50" </p>
+    <div>
+        <h4>Edit tag(s)</h4>
+        {% for tag in tags %}
+        <div>
+            <input type="checkbox" value="{{ tag.id }}" id="tag_{{ tag.id }}" name="tags">
+            <label for="tag_{{ tag.id }}">
+                {{ tag.name }}
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <button>Save</button>
 </form>
-<a href="/{{user_id}}">Go Back</a>
+<br>
+<a href="/{{user_id}}/posts/{{post.id}}">Go Back</a>
 {% endblock %}

@@ -6,13 +6,26 @@
 
 <h1>Add Post for {{user.first_name}} {{user.last_name}}</h1>
 <form action="/{{user.id}}/posts/new" method="POST">
-    <p>Title: <input name="title" placeholder="First Post!"></p>
-    <p>Post Content: <input name="content" placeholder="Oh, hi!"></p>
+    <p>Title: <input name="title" placeholder="First Post!" required></p>
+    <p>Post Content: <input name="content" placeholder="Oh, hi!" size="50" required></p>
+
+    <div>
+        <h4>Select tag(s)</h4>
+        {% for tag in tags %}
+        <div>
+            <input type="checkbox" value="{{ tag.id }}" id="tag_{{ tag.id }}" name="tags">
+            <label for="tag_{{ tag.id }}">
+                {{ tag.name }}
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
     <button>Submit</button>
 </form>
 <br>
-<form action="/{{user.id}}">
-    <button>Cancel</button>
-</form>
+
+
+<a href="/{{user.id}}">Go Back</a>
 
 {% endblock %}
